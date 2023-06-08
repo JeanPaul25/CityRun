@@ -1,0 +1,11 @@
+[33mcommit d231c0b810caad985255b068b814b707e31960f9[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: JeanPaul25 <92525838+JeanPaul25@users.noreply.github.com>
+Date:   Wed Jun 7 21:58:59 2023 -0500
+
+    Add City Pack assets
+
+[33mcommit 4c2339189bd6919045544eaaab990abc5144c17b[m
+Author: JeanPaul25 <92525838+JeanPaul25@users.noreply.github.com>
+Date:   Wed Jun 7 21:10:43 2023 -0500
+
+    First commit, empty project and .gitignore
