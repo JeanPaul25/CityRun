@@ -11,7 +11,7 @@ public class Generator : MonoBehaviour
     bool triggered = false;
 
     private void Awake() {
-        triggered = false;   
+        triggered = false;         
     }    
 
     //Al detectar un trigger genera un nuevo bloque de terreno

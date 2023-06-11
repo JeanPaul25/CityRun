@@ -13,4 +13,9 @@ public class Values : ScriptableObject
     public void AddPos(){
         posX += 4f;
     }
+
+    public void Reset()
+    {
+        posX = 14.75f;
+    }
 }
