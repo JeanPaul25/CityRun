@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2577dcc73d851d478934454299eb015, type: 3}
   m_Name: posX
   m_EditorClassIdentifier: 
-  posX: 0
+  posX: 118.75
