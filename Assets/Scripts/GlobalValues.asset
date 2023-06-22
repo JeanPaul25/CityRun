@@ -10,6 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2577dcc73d851d478934454299eb015, type: 3}
-  m_Name: posX
+  m_Name: GlobalValues
   m_EditorClassIdentifier: 
   posX: 14.75
+  velocityCars: 45
+  day: 1

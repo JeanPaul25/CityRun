@@ -2203,13 +2203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4909b880d7dcda54da076dba56c9e940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posX: {fileID: 11400000, guid: 8245fb09ecabbe648913ca2d93595e5f, type: 2}
-  builds:
-  - {fileID: 2231276138244346500, guid: 4e7342d95da2d9041b3775ffd2a99ca1, type: 3}
-  roads:
-  - {fileID: 6700149560191246250}
-  terrains:
-  - {fileID: 7372618720501668773, guid: a13cb37a8bcbd424293325430cf44c05, type: 3}
+  globalValues: {fileID: 11400000, guid: 8245fb09ecabbe648913ca2d93595e5f, type: 2}
 --- !u!1 &6870310118913957828
 GameObject:
   m_ObjectHideFlags: 0

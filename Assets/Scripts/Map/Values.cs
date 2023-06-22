@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -10,8 +7,12 @@ using UnityEngine;
 public class Values : ScriptableObject
 {
     [SerializeField] private float posX;
+    [SerializeField] private float velocityCars;
     [SerializeField] private bool day = true;
     public float PoxS { get => posX; }
+
+    public float VelocityCars { get => velocityCars; }
+
     public bool Day { get => day; }
 
     public void AlterDay()
@@ -24,8 +25,15 @@ public class Values : ScriptableObject
         posX += 4f;
     }
 
+    public void AlterVelocityCars()
+    {
+        velocityCars += 0.5f;
+        velocityCars = Mathf.Clamp(velocityCars, 0f, 50f);
+    }
+
     public void Reset()
     {
         posX = 14.75f;
+        velocityCars = 0f;
     }
 }
