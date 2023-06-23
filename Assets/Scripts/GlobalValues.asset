@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2577dcc73d851d478934454299eb015, type: 3}
   m_Name: GlobalValues
   m_EditorClassIdentifier: 
-  posX: 14.75
-  velocityCars: 45
+  posX: -13.25
+  velocityCars: 5
   day: 1
