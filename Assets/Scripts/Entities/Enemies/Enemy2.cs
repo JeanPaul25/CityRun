@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehaviour : MonoBehaviour
+public class Enemy2 : MonoBehaviour
 {
     [SerializeField] private Vector3 targetPosition;
     [SerializeField] private GlobalValues globalValues;
@@ -11,13 +11,11 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] GameObject bullet;
 
     [SerializeField] private float shootInterval = 2f;
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(ShootBullet());
     }
 
-    // Update is called once per frame
     void Update()
     {
 

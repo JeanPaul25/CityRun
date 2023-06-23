@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Walls
   - Destroyer
+  - Terrain
+  - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX

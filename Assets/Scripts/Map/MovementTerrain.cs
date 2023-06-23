@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InitialTerrain : MonoBehaviour
+public class MovementTerrain : MonoBehaviour
 {
     [SerializeField] GlobalValues globalValues;
     // Start is called before the first frame update

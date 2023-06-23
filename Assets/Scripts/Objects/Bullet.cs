@@ -11,10 +11,17 @@ public class Bullet : MonoBehaviour
         direction = (mousePosition - transform.position).normalized;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         transform.up = direction.normalized;
         transform.position += direction * (globalValues.Speed + velocity) * Time.fixedDeltaTime;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Generator : MonoBehaviour
+public class TerrainGenerator : MonoBehaviour
 {
     [SerializeField] GlobalValues globalValues;
     private GameObject[] blocks;
-    private int i;
+    private int position;
 
     private void Start()
     {
@@ -15,8 +15,8 @@ public class Generator : MonoBehaviour
     {
         if (collision.tag == "Terrain")
         {
-            i = Random.Range(0, blocks.Length);
-            Instantiate(blocks[i], new Vector2(18.5f, 0), Quaternion.identity);
+            position = Random.Range(0, blocks.Length);
+            Instantiate(blocks[position], new Vector2(18.5f, 0), Quaternion.identity);
         }
     }
 }
