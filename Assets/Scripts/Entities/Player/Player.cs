@@ -4,11 +4,11 @@ public class Player : MonoBehaviour
 {
     [SerializeField] GlobalValues globalValues;
     private float horizontal, vertical, speed = 5;
-    protected int health = 10;
+    private int health = 10, ammo = 10;
 
     void Start()
     {
-        StartCoroutine(globalValues.AddSpeed());
+        StartCoroutine(globalValues.ContinousSpeed());
     }
 
     private void Awake()
@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.Log("Health: " + health + " - Ammo: " + ammo);
         Movement();
         if (health == 0)
         {
@@ -33,6 +34,16 @@ public class Player : MonoBehaviour
     public int GetHealth()
     {
         return health;
+    }
+
+    public void ChangeAmmo(int change)
+    {
+        ammo += change;
+    }
+
+    public int GetAmmo()
+    {
+        return ammo;
     }
 
     private void Movement()

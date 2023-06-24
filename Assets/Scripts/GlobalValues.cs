@@ -19,10 +19,10 @@ public class GlobalValues : ScriptableObject
     [SerializeField] private int enemyHealth;
 
     //Probabilidades de generacion
-    [SerializeField] private int enemySpawnProb;
-    [SerializeField] private int fixSpawnProb;
-    [SerializeField] private int ammoSpawnProb;
-    [SerializeField] private int turboSpawnProb;
+    [SerializeField] private float enemySpawnProb;
+    [SerializeField] private float ammoSpawnProb;
+    [SerializeField] private float turboSpawnProb;
+    [SerializeField] private float fixSpawnProb;
 
     private Vector3 playerPosition;
 
@@ -38,9 +38,9 @@ public class GlobalValues : ScriptableObject
         this.playerPosition = playerPosition;
     }
 
-    public int[] GetProbs()
+    public float[] GetProbs()
     {
-        int[] probs = { enemySpawnProb, fixSpawnProb, ammoSpawnProb, turboSpawnProb };
+        float[] probs = { enemySpawnProb, ammoSpawnProb, turboSpawnProb, fixSpawnProb };
         return probs;
     }
 
@@ -49,7 +49,7 @@ public class GlobalValues : ScriptableObject
         day = !day;
     }
 
-    public IEnumerator AddSpeed()
+    public IEnumerator ContinousSpeed()
     {
         while (true)
         {
@@ -57,6 +57,12 @@ public class GlobalValues : ScriptableObject
             speed = Mathf.Clamp(speed, 0, 25);
             yield return new WaitForSeconds(1);
         }
+    }
+
+    public void AddSpeed(int turbo)
+    {
+        speed += turbo;
+        speed = Mathf.Clamp(speed, 0, 25);
     }
 
     public void ReduceSpeed(float reduce)
@@ -72,8 +78,8 @@ public class GlobalValues : ScriptableObject
         enemyVerticalSpeed = 5;
         enemyHealth = 5;
         enemySpawnProb = 5;
-        fixSpawnProb = 0;
-        ammoSpawnProb = 0;
-        turboSpawnProb = 0;
+        ammoSpawnProb = 2.5f;
+        turboSpawnProb = 2.5f;
+        fixSpawnProb = 2.5f;
     }
 }

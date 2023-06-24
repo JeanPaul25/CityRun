@@ -9,6 +9,9 @@ TagManager:
   - Terrain
   - Bullet
   - Enemy
+  - Ammo
+  - Turbo
+  - Fix
   layers:
   - Default
   - TransparentFX
