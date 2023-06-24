@@ -22,7 +22,7 @@ public class Shoot : MonoBehaviour
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f;
 
-            newBullet.GetComponent<Bullet>().SetTarget(mousePosition);
+            newBullet.GetComponent<Bullet>().SetTarget(mousePosition, tag);
         }
     }
 }

@@ -11,6 +11,7 @@ public class GlobalValues : ScriptableObject
 {
     //Variables globales
     [SerializeField] private float speed;
+    [SerializeField] private float enemyVerticalSpeed;
     [SerializeField] private bool day = true;
 
     //Variables para los enemigos
@@ -18,8 +19,7 @@ public class GlobalValues : ScriptableObject
     [SerializeField] private int enemyHealth;
 
     //Probabilidades de generacion
-    [SerializeField] private int enemy1SpawnProb;
-    [SerializeField] private int enemy2SpawnProb;
+    [SerializeField] private int enemySpawnProb;
     [SerializeField] private int fixSpawnProb;
     [SerializeField] private int ammoSpawnProb;
     [SerializeField] private int turboSpawnProb;
@@ -28,6 +28,7 @@ public class GlobalValues : ScriptableObject
 
     public float Speed { get => speed; }
     public float EnemySpeed { get => enemySpeed; }
+    public float EnemyVerticalSpeed { get => enemyVerticalSpeed; }
     public bool Day { get => day; }
     public int EnemyHealth { get => enemyHealth; }
     public Vector3 PlayerPosition { get => playerPosition; }
@@ -39,7 +40,7 @@ public class GlobalValues : ScriptableObject
 
     public int[] GetProbs()
     {
-        int[] probs = { enemy1SpawnProb, enemy2SpawnProb, fixSpawnProb, ammoSpawnProb, turboSpawnProb };
+        int[] probs = { enemySpawnProb, fixSpawnProb, ammoSpawnProb, turboSpawnProb };
         return probs;
     }
 
@@ -68,7 +69,11 @@ public class GlobalValues : ScriptableObject
     {
         speed = 0;
         enemySpeed = 10;
+        enemyVerticalSpeed = 5;
         enemyHealth = 5;
-        enemy1SpawnProb = 1;
+        enemySpawnProb = 5;
+        fixSpawnProb = 0;
+        ammoSpawnProb = 0;
+        turboSpawnProb = 0;
     }
 }

@@ -30,6 +30,11 @@ public class Player : MonoBehaviour
         health += change;
     }
 
+    public int GetHealth()
+    {
+        return health;
+    }
+
     private void Movement()
     {
         horizontal = Input.GetAxis("Horizontal");

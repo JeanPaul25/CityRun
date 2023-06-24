@@ -6,16 +6,18 @@ using UnityEngine.UIElements;
 public class Enemy1 : MonoBehaviour
 {
     [SerializeField] GlobalValues globalValues;
+    [SerializeField] GameObject enemy;
+    [SerializeField] GameObject[] hearths;
     private Vector3 direction;
     private int health;
     private SpriteRenderer spriteRenderer;
     private bool attackMode = true;
 
-    private Transform playerTransform;
     private void Start()
     {
         health = globalValues.EnemyHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        ColorHearths();
     }
 
     private void FixedUpdate()
@@ -24,19 +26,37 @@ public class Enemy1 : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        switch (collision.tag)
         {
-            StartCoroutine(MakeDamage());
-            globalValues.ReduceSpeed(5);
+            case "Player":
+                StartCoroutine(MakeDamage());
+                globalValues.ReduceSpeed(5);
+                break;
+            case "Bullet":
+                if (collision.GetComponent<Bullet>().GetShooterTag() == "Player")
+                {
+                    StartCoroutine(GetDamage());
+                    health--;
+                    ColorHearths();
+                    if (health == 0)
+                    {
+                        Destroy(enemy);
+                    }
+                    Destroy(collision.gameObject);
+                }
+                break;
         }
-        if (collision.tag == "Bullet")
+    }
+
+    private void ColorHearths()
+    {
+        Color color;
+        int i = 1;
+        foreach (GameObject hearth in hearths)
         {
-            health--;
-            if (health == 0)
-            {
-                Destroy(gameObject);
-            }
-            StartCoroutine(GetDamage());
+            color = (i <= health) ? Color.red : Color.gray;
+            hearth.GetComponent<SpriteRenderer>().color = color;
+            i++;
         }
     }
 

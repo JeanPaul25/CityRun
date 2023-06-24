@@ -5,8 +5,10 @@ using UnityEngine;
 public class ReceiveDamage : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
+    private Player player;
     void Start()
     {
+        player = gameObject.GetComponent<Player>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -14,8 +16,21 @@ public class ReceiveDamage : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            gameObject.GetComponent<Player>().ChangeHealth(-1);
+            player.ChangeHealth(-1);
             StartCoroutine(GetDamage());
+        }
+        if (collision.tag == "Bullet")
+        {
+            if (collision.GetComponent<Bullet>().GetShooterTag() == "Enemy")
+            {
+                player.ChangeHealth(-1);
+                Destroy(collision.gameObject);
+                GetDamage();
+            }
+        }
+        if (player.GetHealth() == 0)
+        {
+            Destroy(gameObject);
         }
     }
 

@@ -1,19 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Enemy2 : MonoBehaviour
 {
-    [SerializeField] private Vector3 targetPosition;
     [SerializeField] private GlobalValues globalValues;
-    [SerializeField] private GameObject carPlayer;
-
+    [SerializeField] GameObject enemy;
     [SerializeField] GameObject bullet;
-
     [SerializeField] private float shootInterval = 2f;
+    [SerializeField] GameObject[] hearths;
+
+    private bool verticalDirection;
+    private Vector3 verticalMovement;
+    private SpriteRenderer spriteRenderer;
+    private int health;
+
     void Start()
     {
+        health = globalValues.EnemyHealth;
+        spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(ShootBullet());
+        ColorHearths();
     }
 
     void Update()
@@ -23,9 +31,49 @@ public class Enemy2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (transform.position.x < targetPosition.x)
+        if (transform.position.x < 11)
         {
-            transform.Translate(Vector3.right * globalValues.Speed * Time.deltaTime);
+            transform.Translate(Vector3.right * globalValues.EnemySpeed * Time.deltaTime);
+        }
+        else
+        {
+            verticalMovement = verticalDirection ? Vector3.up : Vector3.down;
+            transform.Translate(verticalMovement * globalValues.EnemyVerticalSpeed * Time.deltaTime);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.tag)
+        {
+            case "Walls":
+                verticalDirection = !verticalDirection;
+                break;
+            case "Bullet":
+                if (collision.GetComponent<Bullet>().GetShooterTag() == "Player")
+                {
+                    StartCoroutine(GetDamage());
+                    health--;
+                    ColorHearths();
+                    if (health == 0)
+                    {
+                        Destroy(enemy);
+                    }
+                    Destroy(collision.gameObject);
+                }
+                break;
+        }
+    }
+
+    private void ColorHearths()
+    {
+        Color color;
+        int i = 1;
+        foreach (GameObject hearth in hearths)
+        {
+            color = (i <= health) ? Color.red : Color.gray;
+            hearth.GetComponent<SpriteRenderer>().color = color;
+            i++;
         }
     }
 
@@ -35,9 +83,15 @@ public class Enemy2 : MonoBehaviour
         {
             GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
 
-            newBullet.GetComponent<Bullet>().SetTarget(carPlayer.transform.position);
+            newBullet.GetComponent<Bullet>().SetTarget(globalValues.PlayerPosition, tag);
 
             yield return new WaitForSeconds(shootInterval);
         }
+    }
+    private IEnumerator GetDamage()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.25f);
+        spriteRenderer.color = Color.white;
     }
 }

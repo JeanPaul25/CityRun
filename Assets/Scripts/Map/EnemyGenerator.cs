@@ -7,7 +7,7 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField] GlobalValues globalValues;
     private GameObject[] enemies;
     private int[] probs;
-    private int actualProb;
+    private int actualProb, enemy;
 
     private void Start()
     {
@@ -19,10 +19,11 @@ public class EnemyGenerator : MonoBehaviour
         probs = globalValues.GetProbs();
         if (collision.tag == "Terrain")
         {
-            actualProb = Random.Range(0, 100);
+            actualProb = Random.Range(0, 101);
             if (actualProb < probs[0])
             {
-                Instantiate(enemies[0], new Vector2(-20, Random.Range(-4f, 1.5f)), Quaternion.identity);
+                enemy = Random.Range(0, 2);
+                Instantiate(enemies[enemy], new Vector2(-20, Random.Range(-4f, 1.5f)), Quaternion.identity);
             }
         }
     }

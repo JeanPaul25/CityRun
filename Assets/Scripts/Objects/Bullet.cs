@@ -5,10 +5,12 @@ public class Bullet : MonoBehaviour
     [SerializeField] float velocity = 10f;
     [SerializeField] GlobalValues globalValues;
     private Vector3 direction;
+    private string shooterTag;
 
-    public void SetTarget(Vector3 mousePosition)
+    public void SetTarget(Vector3 targetPosition, string tag)
     {
-        direction = (mousePosition - transform.position).normalized;
+        direction = (targetPosition - transform.position).normalized;
+        shooterTag = tag;
     }
 
     void FixedUpdate()
@@ -17,11 +19,8 @@ public class Bullet : MonoBehaviour
         transform.position += direction * (globalValues.Speed + velocity) * Time.fixedDeltaTime;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public string GetShooterTag()
     {
-        if(collision.tag == "Enemy")
-        {
-            Destroy(gameObject);
-        }
+        return shooterTag;
     }
 }
