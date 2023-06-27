@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
@@ -13,6 +14,8 @@ public class GlobalValues : ScriptableObject
     [SerializeField] private float speed;
     [SerializeField] private float enemyVerticalSpeed;
     [SerializeField] private bool day = true;
+    private Vector3 playerPosition;
+    private int time;
 
     //Variables para los enemigos
     [SerializeField] private float enemySpeed;
@@ -24,9 +27,8 @@ public class GlobalValues : ScriptableObject
     [SerializeField] private float turboSpawnProb;
     [SerializeField] private float fixSpawnProb;
 
-    private Vector3 playerPosition;
-
     public float Speed { get => speed; }
+    public float Time { get => time; }
     public float EnemySpeed { get => enemySpeed; }
     public float EnemyVerticalSpeed { get => enemyVerticalSpeed; }
     public bool Day { get => day; }
@@ -58,6 +60,15 @@ public class GlobalValues : ScriptableObject
             yield return new WaitForSeconds(1);
         }
     }
+    public IEnumerator AddTime()
+    {
+        while (true)
+        {
+            time++;
+            yield return new WaitForSeconds(1);
+
+        }
+    }
 
     public void AddSpeed(int turbo)
     {
@@ -74,6 +85,7 @@ public class GlobalValues : ScriptableObject
     public void Reset()
     {
         speed = 0;
+        time = 0;
         enemySpeed = 10;
         enemyVerticalSpeed = 5;
         enemyHealth = 5;
@@ -82,4 +94,5 @@ public class GlobalValues : ScriptableObject
         turboSpawnProb = 2.5f;
         fixSpawnProb = 2.5f;
     }
+
 }

@@ -5,17 +5,12 @@ using UnityEngine;
 public class ElementsGenerator : MonoBehaviour
 {
     [SerializeField] GlobalValues globalValues;
+    [SerializeField] private GameObject[] enemies;
     [SerializeField] private GameObject ammo;
     [SerializeField] private GameObject turbo;
     [SerializeField] private GameObject fix;
-    private GameObject[] enemies;
     private float[] probs;
     private int actualProb, enemy;
-
-    private void Start()
-    {
-        enemies = Resources.LoadAll<GameObject>("Prefabs/Entities/Enemies");
-    }
 
     void OnTriggerExit2D(Collider2D collision)
     {

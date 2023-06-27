@@ -12,17 +12,20 @@ public class Enemy1 : MonoBehaviour
     private int health;
     private SpriteRenderer spriteRenderer;
     private bool attackMode = true;
+    private Animator animator;
 
     private void Start()
     {
         health = globalValues.EnemyHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
         ColorHearths();
+	animator = gameObject.GetComponent<Animator>();
     }
 
     private void FixedUpdate()
     {
         Behaviour();
+animator.speed = globalValues.Speed/10;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

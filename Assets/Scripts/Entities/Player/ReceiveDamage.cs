@@ -25,7 +25,7 @@ public class ReceiveDamage : MonoBehaviour
             {
                 player.ChangeHealth(-1);
                 Destroy(collision.gameObject);
-                GetDamage();
+                StartCoroutine(GetDamage());
             }
         }
         if (player.GetHealth() == 0)

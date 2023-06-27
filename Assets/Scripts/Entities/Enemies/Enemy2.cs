@@ -15,6 +15,13 @@ public class Enemy2 : MonoBehaviour
     private Vector3 verticalMovement;
     private SpriteRenderer spriteRenderer;
     private int health;
+    private Animator animator;
+    private AudioSystem audioSystem;
+
+    private void Awake()
+    {
+        audioSystem = FindObjectOfType<AudioSystem>();
+    }
 
     void Start()
     {
@@ -22,15 +29,13 @@ public class Enemy2 : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(ShootBullet());
         ColorHearths();
+        animator = gameObject.GetComponent<Animator>();
     }
 
-    void Update()
-    {
-
-    }
 
     private void FixedUpdate()
     {
+        animator.speed = globalValues.Speed / 10;
         if (transform.position.x < 11)
         {
             transform.Translate(Vector3.right * globalValues.EnemySpeed * Time.deltaTime);
@@ -81,6 +86,8 @@ public class Enemy2 : MonoBehaviour
     {
         while (true)
         {
+            audioSystem.EnemyShoot();
+
             GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
 
             newBullet.GetComponent<Bullet>().SetTarget(globalValues.PlayerPosition, tag);

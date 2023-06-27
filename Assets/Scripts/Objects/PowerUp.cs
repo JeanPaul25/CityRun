@@ -5,15 +5,25 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     [SerializeField] GlobalValues globalValues;
-    void Start()
-    {
+    [SerializeField] float speed = 5;
+    private AudioSystem audioSystem;
 
+    private void Awake()
+    {
+        audioSystem = FindObjectOfType<AudioSystem>();
+    }
+
+    void Update()
+    {
+        transform.position += Vector3.left * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
+            audioSystem.PowerUp();
+            gameObject.GetComponent<AudioSource>().Play();
             switch (tag)
             {
                 case "Ammo":
@@ -26,6 +36,7 @@ public class PowerUp : MonoBehaviour
                     collision.GetComponent<Player>().ChangeHealth(1);
                     break;
             }
+            Destroy(gameObject);
         }
     }
 }
