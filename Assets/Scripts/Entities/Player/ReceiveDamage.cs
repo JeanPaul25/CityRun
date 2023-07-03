@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ReceiveDamage : MonoBehaviour
 {
@@ -30,8 +31,14 @@ public class ReceiveDamage : MonoBehaviour
         }
         if (player.GetHealth() == 0)
         {
+            GameOver();
             Destroy(gameObject);
         }
+    }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene(2);
     }
 
     private IEnumerator GetDamage()

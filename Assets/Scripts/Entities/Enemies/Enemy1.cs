@@ -19,13 +19,13 @@ public class Enemy1 : MonoBehaviour
         health = globalValues.EnemyHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
         ColorHearths();
-	animator = gameObject.GetComponent<Animator>();
+        animator = gameObject.GetComponent<Animator>();
     }
 
     private void FixedUpdate()
     {
         Behaviour();
-animator.speed = globalValues.Speed/10;
+        animator.speed = globalValues.Speed / 10;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -41,11 +41,11 @@ animator.speed = globalValues.Speed/10;
                     StartCoroutine(GetDamage());
                     health--;
                     ColorHearths();
+                    Destroy(collision.gameObject);
                     if (health == 0)
                     {
                         Destroy(enemy);
                     }
-                    Destroy(collision.gameObject);
                 }
                 break;
         }

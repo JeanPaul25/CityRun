@@ -11,7 +11,7 @@ using UnityEngine;
 public class GlobalValues : ScriptableObject
 {
     //Variables globales
-    [SerializeField] private float speed;
+    [SerializeField] private float playerSpeed;
     [SerializeField] private float enemyVerticalSpeed;
     [SerializeField] private bool day = true;
     private Vector3 playerPosition;
@@ -27,7 +27,7 @@ public class GlobalValues : ScriptableObject
     [SerializeField] private float turboSpawnProb;
     [SerializeField] private float fixSpawnProb;
 
-    public float Speed { get => speed; }
+    public float Speed { get => playerSpeed; }
     public float Time { get => time; }
     public float EnemySpeed { get => enemySpeed; }
     public float EnemyVerticalSpeed { get => enemyVerticalSpeed; }
@@ -55,8 +55,8 @@ public class GlobalValues : ScriptableObject
     {
         while (true)
         {
-            speed += 0.5f;
-            speed = Mathf.Clamp(speed, 0, 25);
+            playerSpeed += 0.5f;
+            playerSpeed = Mathf.Clamp(playerSpeed, 0, 25);
             yield return new WaitForSeconds(1);
         }
     }
@@ -66,25 +66,24 @@ public class GlobalValues : ScriptableObject
         {
             time++;
             yield return new WaitForSeconds(1);
-
         }
     }
 
     public void AddSpeed(int turbo)
     {
-        speed += turbo;
-        speed = Mathf.Clamp(speed, 0, 25);
+        playerSpeed += turbo;
+        playerSpeed = Mathf.Clamp(playerSpeed, 0, 25);
     }
 
     public void ReduceSpeed(float reduce)
     {
-        speed -= reduce;
-        speed = Mathf.Clamp(speed, 0, 25);
+        playerSpeed -= reduce;
+        playerSpeed = Mathf.Clamp(playerSpeed, 0, 25);
     }
 
     public void Reset()
     {
-        speed = 0;
+        playerSpeed = 0;
         time = 0;
         enemySpeed = 10;
         enemyVerticalSpeed = 5;

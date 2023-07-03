@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class Player : MonoBehaviour
         StartCoroutine(globalValues.AddTime());
         animator = gameObject.GetComponent<Animator>();
         audio = GetComponent<AudioSource>();
-        audio.volume = 0.25f;
+        audio.volume = 0.15f;
         audio.PlayOneShot(audios[0]);
     }
 
@@ -29,10 +30,6 @@ public class Player : MonoBehaviour
     {
         animator.speed = globalValues.Speed / 10;
         Movement();
-        if (health == 0)
-        {
-            Destroy(gameObject);
-        }
         switch (globalValues.Speed)
         {
             case < 10:

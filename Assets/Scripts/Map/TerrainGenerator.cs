@@ -16,7 +16,7 @@ public class TerrainGenerator : MonoBehaviour
         if (collision.tag == "Terrain")
         {
             position = Random.Range(0, blocks.Length);
-            Instantiate(blocks[position], new Vector2(18.5f, 0), Quaternion.identity);
+            Instantiate(blocks[position], new Vector2(19f, 4), Quaternion.identity);//18.5
         }
     }
 }

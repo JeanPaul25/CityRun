@@ -60,11 +60,11 @@ public class Enemy2 : MonoBehaviour
                     StartCoroutine(GetDamage());
                     health--;
                     ColorHearths();
+                    Destroy(collision.gameObject);
                     if (health == 0)
                     {
                         Destroy(enemy);
                     }
-                    Destroy(collision.gameObject);
                 }
                 break;
         }
