@@ -30,7 +30,8 @@ public class PowerUp : MonoBehaviour
                     collision.GetComponent<Player>().ChangeAmmo(5);
                     break;
                 case "Turbo":
-                    globalValues.AddSpeed(5);
+                    //globalValues.AddSpeed(5);
+                    globalValues.AddTurbo(5);
                     break;
                 case "Fix":
                     collision.GetComponent<Player>().ChangeHealth(1);

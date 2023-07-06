@@ -13,9 +13,10 @@ public class GlobalValues : ScriptableObject
     //Variables globales
     [SerializeField] private float playerSpeed;
     [SerializeField] private float enemyVerticalSpeed;
-    [SerializeField] private bool day = true;
     private Vector3 playerPosition;
-    private int time;
+    private int time, ammo, playerHealth;
+    private float totalDistance, turbo;
+    private bool playing;
 
     //Variables para los enemigos
     [SerializeField] private float enemySpeed;
@@ -27,13 +28,20 @@ public class GlobalValues : ScriptableObject
     [SerializeField] private float turboSpawnProb;
     [SerializeField] private float fixSpawnProb;
 
-    public float Speed { get => playerSpeed; }
-    public float Time { get => time; }
+    public float GetPlayerSpeed { get => playerSpeed; }
+    public float GetTime { get => time; }
     public float EnemySpeed { get => enemySpeed; }
     public float EnemyVerticalSpeed { get => enemyVerticalSpeed; }
-    public bool Day { get => day; }
     public int EnemyHealth { get => enemyHealth; }
+    public int GetAmmo { get => ammo; }
+    public int GetPlayerHealth { get => playerHealth; }
     public Vector3 PlayerPosition { get => playerPosition; }
+    public float GetTotalDistance { get => totalDistance; }
+    public float GetTurbo { get => turbo; }
+    public void ChangePlaying()
+    {
+        playing = !playing;
+    }
 
     public void SetPlayerPosition(Vector3 playerPosition)
     {
@@ -46,52 +54,82 @@ public class GlobalValues : ScriptableObject
         return probs;
     }
 
-    public void AlterDay()
-    {
-        day = !day;
-    }
-
     public IEnumerator ContinousSpeed()
     {
-        while (true)
+        while (playing)
         {
-            playerSpeed += 0.5f;
-            playerSpeed = Mathf.Clamp(playerSpeed, 0, 25);
-            yield return new WaitForSeconds(1);
+            playerSpeed += 0.1f;
+            playerSpeed = Mathf.Clamp(playerSpeed, 0, 26);
+            yield return new WaitForSeconds(0.1f);
         }
     }
-    public IEnumerator AddTime()
+    public IEnumerator ReduceTime()
     {
-        while (true)
+        while (playing)
         {
-            time++;
             yield return new WaitForSeconds(1);
+            time--;
         }
+    }
+
+    public IEnumerator CountDistance()
+    {
+        while (playing)
+        {
+            yield return new WaitForSeconds(0.1f);
+            totalDistance += playerSpeed * 0.277778f; //3500
+        }
+    }
+
+    public void AddTurbo(int change)
+    {
+        turbo += change;
+        turbo = Mathf.Clamp(turbo, 0, 10);
+    }
+
+    public void ReduceTurbo()
+    {
+        turbo -= Time.deltaTime * 2;
+        turbo = Mathf.Clamp(turbo, 0, 10);
     }
 
     public void AddSpeed(int turbo)
     {
         playerSpeed += turbo;
-        playerSpeed = Mathf.Clamp(playerSpeed, 0, 25);
+        playerSpeed = Mathf.Clamp(playerSpeed, 0, 26);
     }
 
     public void ReduceSpeed(float reduce)
     {
         playerSpeed -= reduce;
-        playerSpeed = Mathf.Clamp(playerSpeed, 0, 25);
+        playerSpeed = Mathf.Clamp(playerSpeed, 0, 26);
+    }
+
+    public void ChangeAmmo(int change)
+    {
+        ammo += change;
+    }
+
+    public void ChangePlayerHealth(int change)
+    {
+        playerHealth += change;
     }
 
     public void Reset()
     {
         playerSpeed = 0;
-        time = 0;
+        time = 60;
         enemySpeed = 10;
         enemyVerticalSpeed = 5;
         enemyHealth = 5;
         enemySpawnProb = 5;
-        ammoSpawnProb = 2.5f;
+        ammoSpawnProb = 3.5f;
         turboSpawnProb = 2.5f;
         fixSpawnProb = 2.5f;
+        ammo = 15;
+        playerHealth = 5;
+        totalDistance = 0;
+        playing = true;
+        turbo = 0;
     }
-
 }

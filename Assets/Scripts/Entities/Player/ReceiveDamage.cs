@@ -38,7 +38,7 @@ public class ReceiveDamage : MonoBehaviour
 
     public void GameOver()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Score");
     }
 
     private IEnumerator GetDamage()

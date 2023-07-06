@@ -4,8 +4,8 @@ public class TerrainGenerator : MonoBehaviour
 {
     [SerializeField] GlobalValues globalValues;
     private GameObject[] blocks;
-    private int position;
-
+    private int arrayPosition, offsetX;
+    private GameObject block;
     private void Start()
     {
         blocks = Resources.LoadAll<GameObject>("Prefabs/Map/Blocks");
@@ -15,8 +15,10 @@ public class TerrainGenerator : MonoBehaviour
     {
         if (collision.tag == "Terrain")
         {
-            position = Random.Range(0, blocks.Length);
-            Instantiate(blocks[position], new Vector2(19f, 4), Quaternion.identity);//18.5
+            arrayPosition = Random.Range(0, blocks.Length);
+            block = blocks[arrayPosition];
+            offsetX = (int.Parse(block.name.Substring(block.name.LastIndexOf("_") + 1)) / 2) + 1;
+            Instantiate(block, new Vector2(17.5f + offsetX, 4), Quaternion.identity);//18.5
         }
     }
 }

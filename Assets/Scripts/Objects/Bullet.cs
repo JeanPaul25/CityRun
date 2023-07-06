@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     void FixedUpdate()
     {
         transform.up = direction.normalized;
-        transform.position += direction * (globalValues.Speed + velocity) * Time.fixedDeltaTime;
+        transform.position += direction * (globalValues.GetPlayerSpeed + velocity) * Time.fixedDeltaTime;
     }
 
     public string GetShooterTag()

@@ -35,7 +35,7 @@ public class Enemy2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        animator.speed = globalValues.Speed / 10;
+        animator.speed = globalValues.GetPlayerSpeed / 10;
         if (transform.position.x < 11)
         {
             transform.Translate(Vector3.right * globalValues.EnemySpeed * Time.deltaTime);

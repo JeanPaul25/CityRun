@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8217436887185847355}
   - component: {fileID: 4833099657653702443}
+  - component: {fileID: 2092901778239482450}
   m_Layer: 0
   m_Name: Build28_5
   m_TagString: Terrain
@@ -79,6 +80,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2092901778239482450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6183000886183750200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e77278b8da33f440934274f2f369bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globalValues: {fileID: 11400000, guid: 8245fb09ecabbe648913ca2d93595e5f, type: 2}
 --- !u!1001 &936383921056244320
 PrefabInstance:
   m_ObjectHideFlags: 0
