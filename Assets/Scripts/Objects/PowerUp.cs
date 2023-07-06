@@ -5,7 +5,7 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     [SerializeField] GlobalValues globalValues;
-    [SerializeField] float speed = 5;
+    [SerializeField] float speed = 7.5f;
     private AudioSystem audioSystem;
 
     private void Awake()

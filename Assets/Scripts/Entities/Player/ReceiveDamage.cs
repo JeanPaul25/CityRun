@@ -15,30 +15,29 @@ public class ReceiveDamage : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy")
+        switch (collision.tag)
         {
-            player.ChangeHealth(-1);
-            StartCoroutine(GetDamage());
-        }
-        if (collision.tag == "Bullet")
-        {
-            if (collision.GetComponent<Bullet>().GetShooterTag() == "Enemy")
-            {
+            case "Enemy":
                 player.ChangeHealth(-1);
-                Destroy(collision.gameObject);
                 StartCoroutine(GetDamage());
-            }
+                break;
+            case "Bullet":
+                if (collision.GetComponent<Bullet>().GetShooterTag() == "Enemy")
+                {
+                    player.ChangeHealth(-1);
+                    Destroy(collision.gameObject);
+                    StartCoroutine(GetDamage());
+                }
+                break;
+            case "Goal":
+                gameObject.GetComponent<Player>().globalValues.GameOver("Has llegado a la meta");
+                break;
         }
+
         if (player.GetHealth() == 0)
         {
-            GameOver();
-            Destroy(gameObject);
+            gameObject.GetComponent<Player>().globalValues.GameOver("Tu choche ha sido destruido");
         }
-    }
-
-    public void GameOver()
-    {
-        SceneManager.LoadScene("Score");
     }
 
     private IEnumerator GetDamage()

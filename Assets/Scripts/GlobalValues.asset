@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2577dcc73d851d478934454299eb015, type: 3}
   m_Name: GlobalValues
   m_EditorClassIdentifier: 
-  playerSpeed: 25.700018
+  playerSpeed: 18.100033
   enemyVerticalSpeed: 5
   enemySpeed: 10
   enemyHealth: 5
-  enemySpawnProb: 5
-  ammoSpawnProb: 3.5
-  turboSpawnProb: 10
-  fixSpawnProb: 2.5
+  enemySpawnProb: 6
+  ammoSpawnProb: 3
+  turboSpawnProb: 2.5
+  fixSpawnProb: 2

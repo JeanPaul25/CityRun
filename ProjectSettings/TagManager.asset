@@ -12,6 +12,7 @@ TagManager:
   - Ammo
   - Turbo
   - Fix
+  - Goal
   layers:
   - Default
   - TransparentFX

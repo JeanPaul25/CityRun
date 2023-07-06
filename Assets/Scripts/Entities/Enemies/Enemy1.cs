@@ -44,6 +44,7 @@ public class Enemy1 : MonoBehaviour
                     Destroy(collision.gameObject);
                     if (health == 0)
                     {
+                        globalValues.CountEnemy1();
                         Destroy(enemy);
                     }
                 }

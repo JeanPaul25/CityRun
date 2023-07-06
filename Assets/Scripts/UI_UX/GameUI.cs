@@ -9,6 +9,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] private GlobalValues globalValues;
     [SerializeField] private GameObject stickController;
     [SerializeField] private Slider turboSlider;
+    [SerializeField] private Slider goalSlider;
 
     void Update()
     {
@@ -18,5 +19,6 @@ public class GameUI : MonoBehaviour
         texts[3].text = Mathf.Round((globalValues.GetPlayerSpeed * 10)).ToString() + " Km/h";
         stickController.transform.localRotation = Quaternion.Euler(0f, 0f, (globalValues.GetPlayerSpeed / 26) * -185f);
         turboSlider.value = globalValues.GetTurbo;
+        goalSlider.value = globalValues.GetTotalDistance;
     }
 }

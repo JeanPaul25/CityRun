@@ -3,6 +3,7 @@ using System.Collections;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Almacen de variables globales
@@ -14,9 +15,10 @@ public class GlobalValues : ScriptableObject
     [SerializeField] private float playerSpeed;
     [SerializeField] private float enemyVerticalSpeed;
     private Vector3 playerPosition;
-    private int time, ammo, playerHealth;
-    private float totalDistance, turbo;
-    private bool playing;
+    private int time, ammo, playerHealth, countEnemy1, countEnemy2;
+    private float totalDistance, turbo, totalScore;
+    private bool playing, generateGoal;
+    private String gameOver;
 
     //Variables para los enemigos
     [SerializeField] private float enemySpeed;
@@ -38,6 +40,10 @@ public class GlobalValues : ScriptableObject
     public Vector3 PlayerPosition { get => playerPosition; }
     public float GetTotalDistance { get => totalDistance; }
     public float GetTurbo { get => turbo; }
+    public bool IsGenerateGoal { get => generateGoal; }
+    public String GetGameOver { get => gameOver; }
+    public float GetTotalScore { get => totalScore; } 
+
     public void ChangePlaying()
     {
         playing = !playing;
@@ -56,7 +62,7 @@ public class GlobalValues : ScriptableObject
 
     public IEnumerator ContinousSpeed()
     {
-        while (playing)
+        while (true)
         {
             playerSpeed += 0.1f;
             playerSpeed = Mathf.Clamp(playerSpeed, 0, 26);
@@ -65,20 +71,40 @@ public class GlobalValues : ScriptableObject
     }
     public IEnumerator ReduceTime()
     {
-        while (playing)
+        while (true)
         {
             yield return new WaitForSeconds(1);
             time--;
+            if(time == 0)
+            {
+                GameOver("Se acabó el tiempo");
+            }
+        }
+    }
+    public IEnumerator CountDistance()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            totalDistance += playerSpeed * 0.277778f;
+            if (totalDistance >= 3000)
+            {
+                GenerateGoal();
+            }
         }
     }
 
-    public IEnumerator CountDistance()
+    public void GenerateGoal()
     {
-        while (playing)
-        {
-            yield return new WaitForSeconds(0.1f);
-            totalDistance += playerSpeed * 0.277778f; //3500
-        }
+        generateGoal = true;
+    }
+
+    public void GameOver(String reason)
+    {
+        this.gameOver = reason;
+        totalScore = (totalDistance * 1.5f) + (countEnemy1 * 0.5f) + (countEnemy2 * 0.7f) + ((time - 60) * 0.5f);
+        Debug.Log(totalScore);
+        SceneManager.LoadScene("Score");
     }
 
     public void AddTurbo(int change)
@@ -115,6 +141,16 @@ public class GlobalValues : ScriptableObject
         playerHealth += change;
     }
 
+    public void CountEnemy1()
+    {
+        countEnemy1++;
+    }
+
+    public void CountEnemy2()
+    {
+        countEnemy2++;
+    }
+
     public void Reset()
     {
         playerSpeed = 0;
@@ -123,13 +159,16 @@ public class GlobalValues : ScriptableObject
         enemyVerticalSpeed = 5;
         enemyHealth = 5;
         enemySpawnProb = 5;
-        ammoSpawnProb = 3.5f;
+        ammoSpawnProb = 3f;
         turboSpawnProb = 2.5f;
-        fixSpawnProb = 2.5f;
+        fixSpawnProb = 2f;
         ammo = 15;
         playerHealth = 5;
         totalDistance = 0;
         playing = true;
-        turbo = 0;
+        turbo = 5;
+        countEnemy1 = 0;
+        countEnemy2 = 0;
+        generateGoal = false;
     }
 }

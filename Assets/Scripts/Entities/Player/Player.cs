@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] GlobalValues globalValues;
+    [SerializeField] public GlobalValues globalValues;
     [SerializeField] AudioClip[] audios;
     private float horizontal, vertical, speed = 5, turbo;
     private int health = 10;
