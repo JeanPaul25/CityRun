@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         audio = GetComponent<AudioSource>();
         audio.volume = 0.15f;
-        audio.PlayOneShot(audios[0]);   
+        audio.PlayOneShot(audios[0]);
     }
 
     private void Awake()
@@ -77,7 +77,14 @@ public class Player : MonoBehaviour
             turbo = (globalValues.GetTurbo > 0) ? 5 : 0;
             globalValues.ReduceTurbo();
         }
-        transform.Translate(new Vector2(horizontal * (speed + turbo) * Time.deltaTime, vertical * (speed + turbo) * Time.deltaTime));
+        else
+        {
+            turbo = 0;
+        }
+        if (globalValues.IsPlaying)
+        {
+            transform.Translate(new Vector2(horizontal * (speed + turbo) * Time.deltaTime, vertical * (speed + turbo) * Time.deltaTime));
+        }
         globalValues.SetPlayerPosition(transform.position);
     }
 }

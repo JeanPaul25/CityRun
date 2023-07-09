@@ -19,6 +19,7 @@ public class GlobalValues : ScriptableObject
     private float totalDistance, turbo, totalScore;
     private bool playing, generateGoal;
     private String gameOver;
+    private GameObject scoreTable;
 
     //Variables para los enemigos
     [SerializeField] private float enemySpeed;
@@ -41,12 +42,13 @@ public class GlobalValues : ScriptableObject
     public float GetTotalDistance { get => totalDistance; }
     public float GetTurbo { get => turbo; }
     public bool IsGenerateGoal { get => generateGoal; }
+    public bool IsPlaying { get => playing; }
     public String GetGameOver { get => gameOver; }
-    public float GetTotalScore { get => totalScore; } 
+    public float GetTotalScore { get => totalScore; }
 
-    public void ChangePlaying()
+    public void ChangePlaying(bool playing)
     {
-        playing = !playing;
+        this.playing = playing;
     }
 
     public void SetPlayerPosition(Vector3 playerPosition)
@@ -62,7 +64,7 @@ public class GlobalValues : ScriptableObject
 
     public IEnumerator ContinousSpeed()
     {
-        while (true)
+        while (playing)
         {
             playerSpeed += 0.1f;
             playerSpeed = Mathf.Clamp(playerSpeed, 0, 26);
@@ -71,11 +73,11 @@ public class GlobalValues : ScriptableObject
     }
     public IEnumerator ReduceTime()
     {
-        while (true)
+        while (playing)
         {
             yield return new WaitForSeconds(1);
             time--;
-            if(time == 0)
+            if (time == 0)
             {
                 GameOver("Se acabó el tiempo");
             }
@@ -83,7 +85,7 @@ public class GlobalValues : ScriptableObject
     }
     public IEnumerator CountDistance()
     {
-        while (true)
+        while (playing)
         {
             yield return new WaitForSeconds(0.1f);
             totalDistance += playerSpeed * 0.277778f;
@@ -103,8 +105,21 @@ public class GlobalValues : ScriptableObject
     {
         this.gameOver = reason;
         totalScore = (totalDistance * 1.5f) + (countEnemy1 * 0.5f) + (countEnemy2 * 0.7f) + ((time - 60) * 0.5f);
-        Debug.Log(totalScore);
-        SceneManager.LoadScene("Score");
+        ActiveScoreTable = true;
+        ChangePlaying(false);
+    }
+
+    public delegate void VariableForScoreTable();
+    public event VariableForScoreTable VariableChanged;
+    private bool activeScoreTable = false;
+
+    public bool ActiveScoreTable
+    {
+        get { return activeScoreTable; }
+        set
+        {
+            VariableChanged?.Invoke();
+        }
     }
 
     public void AddTurbo(int change)

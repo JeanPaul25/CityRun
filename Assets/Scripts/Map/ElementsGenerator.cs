@@ -15,7 +15,7 @@ public class ElementsGenerator : MonoBehaviour
     void OnTriggerExit2D(Collider2D collision)
     {
         probs = globalValues.GetProbs();
-        if (collision.tag == "Terrain")
+        if (collision.tag == "Terrain" && globalValues.IsPlaying)
         {
             GenerateEnemy();
             GenerateAmmo();

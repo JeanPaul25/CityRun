@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 508788992}
   - component: {fileID: 508788991}
   - component: {fileID: 508788995}
+  - component: {fileID: 508788996}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -333,6 +334,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e38baa7aceafe43b4fa3657717858f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &508788996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508788990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff47e8ec2182d8a4ab54b488e7454bb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1136563002
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +383,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -115.000015}
+  m_AnchoredPosition: {x: 0, y: -115}
   m_SizeDelta: {x: -627.21, y: -322.44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1136563004
@@ -417,9 +430,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 508788995}
-        m_TargetAssemblyTypeName: Jugar, Assembly-CSharp
-        m_MethodName: ExitGame
+      - m_Target: {fileID: 508788996}
+        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
+        m_MethodName: BtnQuit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -635,9 +648,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 508788995}
-        m_TargetAssemblyTypeName: Jugar, Assembly-CSharp
-        m_MethodName: PlayGame
+      - m_Target: {fileID: 508788996}
+        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
+        m_MethodName: BtnJugar
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

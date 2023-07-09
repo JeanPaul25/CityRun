@@ -9,8 +9,7 @@ public class ScoreUI : MonoBehaviour
     [SerializeField] GlobalValues globalValues;
     [SerializeField] Text txtMessage, txtScore;
     [SerializeField] GameObject[] stars;
-
-    void Awake()
+    private void Awake()
     {
         txtMessage.text = globalValues.GetGameOver;
         txtScore.text = globalValues.GetTotalScore.ToString();
@@ -29,6 +28,16 @@ public class ScoreUI : MonoBehaviour
                 stars[2].GetComponent<Image>().color = Color.yellow;
                 break;
         }
+    }
+
+    private void CatchVariableChanged()
+    {
+        gameObject.transform.Find("ScoreTable").gameObject.SetActive(true);
+    }
+
+    private void Start()
+    {
+        globalValues.VariableChanged += CatchVariableChanged;
     }
 
     public void BtnMenu()

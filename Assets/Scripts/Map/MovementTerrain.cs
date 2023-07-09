@@ -8,6 +8,9 @@ public class MovementTerrain : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.position += Vector3.left * globalValues.GetPlayerSpeed * Time.deltaTime;
+        if (globalValues.IsPlaying)
+        {
+            transform.position += Vector3.left * globalValues.GetPlayerSpeed * Time.deltaTime;
+        }
     }
 }

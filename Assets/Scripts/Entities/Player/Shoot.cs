@@ -15,19 +15,22 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (globalValues.IsPlaying)
         {
-            if (gameObject.GetComponent<Player>().GetAmmo() > 0)
+            if (Input.GetMouseButtonDown(0))
             {
-                audioSystem.PlayerShoot();
+                if (gameObject.GetComponent<Player>().GetAmmo() > 0)
+                {
+                    audioSystem.PlayerShoot();
 
-                GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+                    GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
 
-                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mousePosition.z = 0f;
+                    Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    mousePosition.z = 0f;
 
-                newBullet.GetComponent<Bullet>().SetTarget(mousePosition, tag);
-                gameObject.GetComponent<Player>().ChangeAmmo(-1);
+                    newBullet.GetComponent<Bullet>().SetTarget(mousePosition, tag);
+                    gameObject.GetComponent<Player>().ChangeAmmo(-1);
+                }
             }
         }
     }

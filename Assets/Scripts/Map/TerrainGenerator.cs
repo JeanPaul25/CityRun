@@ -14,7 +14,7 @@ public class TerrainGenerator : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Terrain")
+        if (collision.tag == "Terrain" && globalValues.IsPlaying)
         {
             if (globalValues.IsGenerateGoal == false)
             {

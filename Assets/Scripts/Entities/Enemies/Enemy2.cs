@@ -36,14 +36,17 @@ public class Enemy2 : MonoBehaviour
     private void FixedUpdate()
     {
         animator.speed = globalValues.GetPlayerSpeed / 10;
-        if (transform.position.x < 11)
+        if (globalValues.IsPlaying)
         {
-            transform.Translate(Vector3.right * globalValues.EnemySpeed * Time.deltaTime);
-        }
-        else
-        {
-            verticalMovement = verticalDirection ? Vector3.up : Vector3.down;
-            transform.Translate(verticalMovement * globalValues.EnemyVerticalSpeed * Time.deltaTime);
+            if (transform.position.x < 11)
+            {
+                transform.Translate(Vector3.right * globalValues.EnemySpeed * Time.deltaTime);
+            }
+            else
+            {
+                verticalMovement = verticalDirection ? Vector3.up : Vector3.down;
+                transform.Translate(verticalMovement * globalValues.EnemyVerticalSpeed * Time.deltaTime);
+            }
         }
     }
 
@@ -85,7 +88,7 @@ public class Enemy2 : MonoBehaviour
 
     private IEnumerator ShootBullet()
     {
-        while (true)
+        while (globalValues.IsPlaying)
         {
             audioSystem.EnemyShoot();
 

@@ -24,8 +24,11 @@ public class Enemy1 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Behaviour();
-        animator.speed = globalValues.GetPlayerSpeed / 10;
+        if (globalValues.IsPlaying)
+        {
+            Behaviour();
+            animator.speed = globalValues.GetPlayerSpeed / 10;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
