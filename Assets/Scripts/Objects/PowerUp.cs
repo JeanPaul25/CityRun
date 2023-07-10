@@ -15,7 +15,10 @@ public class PowerUp : MonoBehaviour
 
     void Update()
     {
-        transform.position += Vector3.left * speed * Time.deltaTime;
+        if (globalValues.IsPlaying)
+        {
+            transform.position += Vector3.left * speed * Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

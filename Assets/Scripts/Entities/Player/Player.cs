@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
                 break;
         }
         audio.Play();
+        audio.enabled = (globalValues.IsPlaying) ? true : false;
     }
 
     public void ChangeHealth(int change)

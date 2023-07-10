@@ -12,7 +12,6 @@ public class AudioSystem : MonoBehaviour
     {
         audio = GetComponent<AudioSource>();
     }
-
     public void PlayerShoot()
     {
         audio.PlayOneShot(audios[0], 0.5f);

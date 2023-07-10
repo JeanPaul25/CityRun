@@ -3,6 +3,7 @@ using System.Collections;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -19,17 +20,16 @@ public class GlobalValues : ScriptableObject
     private float totalDistance, turbo, totalScore;
     private bool playing, generateGoal;
     private String gameOver;
-    private GameObject scoreTable;
 
     //Variables para los enemigos
     [SerializeField] private float enemySpeed;
     [SerializeField] private int enemyHealth;
 
     //Probabilidades de generacion
-    [SerializeField] private float enemySpawnProb;
-    [SerializeField] private float ammoSpawnProb;
-    [SerializeField] private float turboSpawnProb;
-    [SerializeField] private float fixSpawnProb;
+    [SerializeField] private float enemySpawnProb = 5;
+    [SerializeField] private float ammoSpawnProb = 3;
+    [SerializeField] private float turboSpawnProb = 2.5f;
+    [SerializeField] private float fixSpawnProb = 2;
 
     public float GetPlayerSpeed { get => playerSpeed; }
     public float GetTime { get => time; }
@@ -54,6 +54,14 @@ public class GlobalValues : ScriptableObject
     public void SetPlayerPosition(Vector3 playerPosition)
     {
         this.playerPosition = playerPosition;
+    }
+
+    public void SetProbs(float enemy, float ammo, float turbo, float fix)
+    {
+        enemySpawnProb = enemy;
+        ammoSpawnProb = ammo;
+        turboSpawnProb = turbo;
+        fixSpawnProb = fix;
     }
 
     public float[] GetProbs()
@@ -173,10 +181,6 @@ public class GlobalValues : ScriptableObject
         enemySpeed = 10;
         enemyVerticalSpeed = 5;
         enemyHealth = 5;
-        enemySpawnProb = 5;
-        ammoSpawnProb = 3f;
-        turboSpawnProb = 2.5f;
-        fixSpawnProb = 2f;
         ammo = 15;
         playerHealth = 5;
         totalDistance = 0;
@@ -185,5 +189,6 @@ public class GlobalValues : ScriptableObject
         countEnemy1 = 0;
         countEnemy2 = 0;
         generateGoal = false;
+        totalScore = 0;
     }
 }

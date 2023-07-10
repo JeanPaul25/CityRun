@@ -9,44 +9,57 @@ public class ScoreUI : MonoBehaviour
     [SerializeField] GlobalValues globalValues;
     [SerializeField] Text txtMessage, txtScore;
     [SerializeField] GameObject[] stars;
-    private void Awake()
+
+    private void SetScoreText()
     {
         txtMessage.text = globalValues.GetGameOver;
         txtScore.text = globalValues.GetTotalScore.ToString();
-        switch (globalValues.GetTotalScore)
+        float score = globalValues.GetTotalScore;
+        if (score < 1000) { }
+        else if (score < 2500f)
         {
-            case < 4000:
-                stars[0].GetComponent<Image>().color = Color.yellow;
-                break;
-            case < 8000:
-                stars[0].GetComponent<Image>().color = Color.yellow;
-                stars[1].GetComponent<Image>().color = Color.yellow;
-                break;
-            case < 12000:
-                stars[0].GetComponent<Image>().color = Color.yellow;
-                stars[1].GetComponent<Image>().color = Color.yellow;
-                stars[2].GetComponent<Image>().color = Color.yellow;
-                break;
+            stars[0].GetComponent<Image>().color = Color.yellow;
         }
+        else if (score < 3500f)
+        {
+            stars[0].GetComponent<Image>().color = Color.yellow;
+            stars[1].GetComponent<Image>().color = Color.yellow;
+        }
+        else
+        {
+            stars[0].GetComponent<Image>().color = Color.yellow;
+            stars[1].GetComponent<Image>().color = Color.yellow;
+            stars[2].GetComponent<Image>().color = Color.yellow;
+        }
+    }
+
+    private void ResetStars()
+    {
+        stars[0].GetComponent<Image>().color = Color.white;
+        stars[1].GetComponent<Image>().color = Color.white;
+        stars[2].GetComponent<Image>().color = Color.white;
     }
 
     private void CatchVariableChanged()
     {
+        SetScoreText();
         gameObject.transform.Find("ScoreTable").gameObject.SetActive(true);
     }
 
     private void Start()
     {
         globalValues.VariableChanged += CatchVariableChanged;
+        ResetStars();
     }
 
     public void BtnMenu()
     {
+        ResetStars();
         SceneManager.LoadScene("Menu");
     }
     public void BtnJugar()
     {
+        ResetStars();
         SceneManager.LoadScene("GameScene");
     }
-
 }
