@@ -24,10 +24,10 @@ public class MenuUI : MonoBehaviour
     }
     public void BtnMedio()
     {
-        globalValues.SetProbs(7.5f, 2.5f, 1, 1);
+        globalValues.SetProbs(7.5f, 3, 1, 1);
     }
     public void BtnDificil()
     {
-        globalValues.SetProbs(10, 2, 0.5f, 0.5f);
+        globalValues.SetProbs(10, 3, 0.5f, 0.5f);
     }
 }

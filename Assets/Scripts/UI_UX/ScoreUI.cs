@@ -20,7 +20,7 @@ public class ScoreUI : MonoBehaviour
         {
             stars[0].GetComponent<Image>().color = Color.yellow;
         }
-        else if (score < 3500f)
+        else if (score < 3750f)
         {
             stars[0].GetComponent<Image>().color = Color.yellow;
             stars[1].GetComponent<Image>().color = Color.yellow;

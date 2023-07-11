@@ -826,10 +826,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoreTable
       objectReference: {fileID: 0}
-    - target: {fileID: 3961408204520128384, guid: e2056be2ed2f3a2439f0ff707379fc96, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5233730814825725037, guid: e2056be2ed2f3a2439f0ff707379fc96, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -918,18 +914,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 57573613}
-    - target: {fileID: 6808490373038423827, guid: e2056be2ed2f3a2439f0ff707379fc96, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BtnMenu
-      objectReference: {fileID: 0}
     - target: {fileID: 7396016400603891250, guid: e2056be2ed2f3a2439f0ff707379fc96, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 57573613}
-    - target: {fileID: 7396016400603891250, guid: e2056be2ed2f3a2439f0ff707379fc96, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BtnJugar
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
